@@ -1,0 +1,488 @@
+@font-face {
+    font-family: 'icones';
+    src: url(../font/icones.ttf);
+}
+
+body {
+    background-color: #1D232A;
+    font-family: 'Open sans', 'icones', sans-serif;
+    color: #FFFFFF;
+}
+
+@media  screen and (min-width: 1200px) {
+    body {
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #15191C;
+    padding: 8px 16px; /*padding/espaçamento 8pixels em cima e em baico e 16pixels nas laterais*/
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.16);
+}
+
+.cabecalho__menu i::before {
+    content: "\e904";
+    font-size: 24px;
+    }
+
+    .cabecalho__notificacao i::before {
+        content: "\e906";
+        font-size: 24px;
+    }
+
+    .cabecalho__logo {
+        width: 40px;
+    }
+
+    .cabecalho__perfil {
+        display: none; /*o perfil no cabecalho não aparece quando a tela for menor que 1440px
+        versão mobile não aparece*/
+    }
+
+    @media screen and (min-width: 1200px) {
+        .cabecalho {
+            background-color: #1D232A;
+            display: grid;
+            column-gap: 32px;
+            grid-template-columns: 1fr auto;
+            padding: 16px 60px;
+            height: 80px;
+            box-sizing: border-box;
+            grid-column: 2;
+        }
+
+        .cabecalho__menu {
+            display: none;
+        }
+
+        .cabecalho__logo {
+            display: none;
+        }
+
+        .cabecalho__perfil{
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            column-gap: 8px;
+            align-items: center;
+            justify-self: flex-end;
+            color: #95999C; /*cor das letras/tipografia*/
+            padding: 8px 32px;
+            border-right: 1px solid #95999C;
+        }
+
+        .cabecalho__perfil::before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 32px;
+            background-image: url(../img/profile_2.png);
+            background-size: contain; /*tem que estar contida dentro do tamanho*/
+            background-repeat: no-repeat; /*para o background não se repetir*/
+            background-position: center;
+        }
+
+        .cabecalho__perfil::after { /*vai chamar o icone/content*/
+            content: "\e90d";
+            color: #FFFFFF;
+            font-size: 1.5rem;
+        }
+    }
+        
+    .menu-lateral {
+        flex-direction: column;
+        display: flex;
+        background-color: #15191C;  
+        width: 75vw; /* largura do menu lateral/ tres pontinhos*/
+        height: 100vh; /*altura da do menu lateral*/
+
+        position: absolute;
+        left: -100vw;
+    }
+
+    .menu-lateral--ativo {
+        left: 0;
+        transition: left .25s;
+    }
+
+    .menu-lateral__logo {
+        width: 118px;
+        align-self: center;
+        padding: 16px;
+    }
+
+    .menu-lateral__link {
+        height: 64px;
+        color: #95999C;
+        padding-left: 64px;
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-lateral__link--ativo { /*quano menu lateral estiver ativo/clicado*/
+        color: #FFFFFF;
+        padding-left: 56px;
+        border-left: 8px solid #FFFFFF;
+    }
+
+    .menu-lateral__link::before {
+        content: "\e900"; /*código do icone*/
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+        position: absolute;
+        left: 24px;
+    }
+
+    .menu-lateral__link--inicio::before {
+        content: "\e902";
+    }
+
+    .menu-lateral__link--videos::before {
+        content: "\e90e";
+    }
+
+    .menu-lateral__link--picos::before {
+        content: "\e909";
+    }
+
+    .menu-lateral__link--integrantes::before {
+        content: "\e903";
+    }
+
+    .menu-lateral__link--camisas::before {
+        content: "\e900";
+    }
+
+    .menu-lateral__link--pinturas::before {
+        content: "\e90a";
+    }
+
+    @media screen and (min-width: 1200px) {
+        .menu-lateral {
+            position: static;
+            width: 200px;
+            grid-column: 1;
+            grid-row: 1 / span 2;
+            
+        }
+    }
+
+    .principal {
+        padding: 24px 16px;
+        display: grid; /*transformando em um grid container*/
+        gap: 16px;
+    } 
+
+    .titulo-pagina {
+        font-size: 1.5rem;
+        font-weight: 700;
+        
+    }
+
+    .titulo-secao {
+        font-size: 1.2rem;
+        font-weight: 700; /*largura da fonte=700 é negrito*/
+    }
+
+    @media screen and (min-width: 1200px) {
+        .principal {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            grid-template-areas: 
+                "titulo-pagina titulo-pagina titulo-pagina"
+                "destaque-video destaque-video videos-recentes"  
+                "secao-videos secao-videos secao-videos"
+                "produtos-recentes destaque-produto destaque-produto"
+                "secao-produtos secao-produtos secao-produtos"
+            ; 
+            column-gap: 32px;
+            padding: 16px 60px;
+            grid-column: 2;
+        }
+
+        .titulo-secao {
+            grid-column: span 4;
+        }
+    }
+
+    .cartao {
+        width: 100%;
+        border-radius: 15px; /*para deixar as boradas arredondadas*/
+        overflow: hidden;
+        background-color: #2C343A;
+    }
+
+    
+    .cartao__imagem--desktop {
+        display: none;
+    }
+
+    .cartao--destaque {
+        margin-bottom: 16px; /*16px do gap mais 16px do margin bottom*/
+    }
+
+    .cartao__conteudo {
+       padding: 16px; /*espaçamento*/
+       display: grid;
+       grid-template-columns: auto 1fr;
+       gap: 8px; /*margin bottom de 8px em todos eme vez de colocar margin bottom em cartao destaque 
+       perfil no titulo entre outros só coloca o gap na classe pai*/
+       column-gap: 8px; /*espaçamento entre colunas*/
+    }
+
+    .cartao__destaque {
+        grid-column: span 2;
+    }
+
+    .cartao__titulo {
+        font-size: 1.2rem; /* tamanho do titulo do cartao*/
+        font-weight: 700; /*BOLD / largura da fonte*/
+        grid-column: span 2;
+    }
+
+    .cartao__perfil {
+        color: #95999C;
+        font-size: 0.9rem;
+        grid-column: span 2;
+    }
+
+    .cartao__info {
+        display: flex;
+        align-items: center;
+        color: #95999C;
+    }
+
+    .cartao__info--tempo::before {
+        content: "\e90c";
+        margin-right: 8px;
+    }
+
+    .cartao__info--vizualizacao::before { /*o ::before é a chamada do content para aparecer os icones*/
+        content: "\e90f";
+        margin-right: 8px;
+    }
+
+    .cartao__info--compra::before {
+        content: "\e905";
+        margin-right: 8px;
+    }
+
+    .cartao__botao {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0480DC;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        justify-self: flex-end;/*botao de assistir foi pro lado direito dentro do cartao*/
+    }
+
+    .cartao__botao--play::before {
+        content: "\e90b";
+        font-size: 24px;
+    }
+
+    .cartao__botao--destaque {
+        width: 100%;
+        grid-column: span 2; /*mescla duas linhas no grid para que dois elemntos fiquem lado a lado*/
+    }
+
+    .cartao__botao--destaque::before {
+        margin-right: 8px;
+    }
+
+    .cartao--recentes {
+        display: none;
+    }
+
+    @media screen and (min-width: 1200px) {
+        .cartao--destaque {
+            margin-bottom: 0;
+        }
+
+        .cartao__imagem--mobile {
+            display: none;
+        }
+
+        .cartao__imagem--desktop {
+            display: block;
+        }
+
+        .cartao__botao--destaque {
+            grid-column: auto;
+            padding: 16px 8px; /* 16px vertical 8px horizontal*/
+        }
+
+        .cartao--recentes {
+            display: grid;
+            grid-template-columns: auto auto;
+            align-items: center;
+            row-gap: 24px;
+            width: 256px; /*largura fixa*/
+            padding: 16px;
+            box-sizing: border-box;
+            align-self: flex-start;
+        }
+
+        .cartao--recentes .cartao__titulo {
+            grid-column: auto;
+        }
+
+        .cartao__link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0480DC;
+            justify-self: flex-end;
+            
+        }
+
+        .cartao__lista {
+            display: grid;
+            row-gap: 16px;
+            grid-column: span 2;
+        }
+
+        .cartao__item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 8px;
+        }
+
+        .cartao__item-thumbnail {
+            width: 32px;
+            grid-row: span 2;
+        }
+
+        .cartao__item-titulo {
+            font-size: 0.9rem;
+            line-height: 1.2rem;/*ajustar o tamanho da altura da linha*/
+            font-weight: 700; /*negrito*/
+        }
+
+        .cartao__item-perfil {
+            font-size: 0.8rem;
+            color: #95999C;
+        }
+    }
+
+    .secao {
+        display: grid;
+        gap: 16px;
+        column-gap: 16px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        .secao {
+            grid-template-columns: repeat(4, 1fr); /*repete código*/
+        }
+
+        .destaque-video {
+            grid-area: destaque-video;
+        }
+    
+        .videos-recentes {
+            grid-area: videos-recentes;
+        }
+    
+        .secao-videos {
+            grid-area: secao-videos;
+        }
+    
+        .destaque-produto {
+            grid-area: destaque-produto;
+        }
+    
+        .produtos-recentes {
+            grid-area: produtos-recentes;
+        }
+    
+        .secao-produtos {
+            grid-area: secao-produtos;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .principal--picos {
+            grid-template-areas: 
+            "titulo-pagina titulo-pagina titulo-pagina"
+            "picos-mapa picos-mapa picos-favoritos"
+            "secao-picos-mais-visitados secao-picos-mais-visitados secao-picos-mais-visitados"
+            ;
+        }
+    }
+    
+    .picos-mapa {
+        width: 100%;
+        height: 468px;
+        background-image: url("../img/mapa-picos.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 15px;
+    }
+    
+    .cartao__botao--pico::before {
+        content: "\e908";
+        font-size: 24px;
+    }
+    
+    @media screen and (min-width: 1200px) {
+        .picos-mapa {
+            grid-area: picos-mapa;
+        }
+    
+        .picos-favoritos {
+            grid-area: picos-favoritos;
+        }
+    
+        .secao-picos-mais-visitados {
+            grid-area: secao-picos-mais-visitados;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .principal--picos {
+            grid-template-areas: 
+            "titulo-pagina titulo-pagina titulo-pagina"
+            "picos-mapa picos-mapa picos-favoritos"
+            "secao-picos-mais-visitados secao-picos-mais-visitados secao-picos-mais-visitados"
+            ;
+        }
+    }
+    
+    .picos-mapa {
+        width: 100%;
+        height: 468px;
+        background-image: url("../img/mapa-picos.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 15px;
+    }
+    
+    .cartao__botao--pico::before {
+        content: "\e908";
+        font-size: 24px;
+    }
+    
+    @media screen and (min-width: 1200px) {
+        .picos-mapa {
+            grid-area: picos-mapa;
+        }
+    
+        .picos-favoritos {
+            grid-area: picos-favoritos;
+        }
+    
+        .secao-picos-mais-visitados {
+            grid-area: secao-picos-mais-visitados;
+        }
+    }
+    
